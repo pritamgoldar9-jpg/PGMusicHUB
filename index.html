@@ -1,0 +1,198 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG MusicHUB</title>
+ <style>
+	* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+  	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		background: linear-gradient(135deg, #121212 0%, #1a1a2e 50%, #16213e 100%);
+		color: white;
+		line-height: 1.6;
+	}
+	.navbar {
+            background: rgba(18, 18, 18, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(-45deg, #1db954, #ffeb3b, #ff6b6b, #4ecdc4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoShift 3s ease-in-out infinite;
+            display: inline-block;
+	}
+        @keyframes logoShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+	.nav-links {
+		display: flex;
+		list-style: none;
+		gap: 2rem;
+	}
+	.nav-links a {
+		color: #ffffff;
+		text-decoration: none;
+		transition: color 0.3s;
+	}
+	.nav-links a:hover {
+		color: #1db954;
+
+	}
+	.title {
+		height: 500px;
+		background-image: url('');
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		position: relative;
+	}
+	.title h1 {
+		font-size: 4rem;
+		margin-bottom: 1rem;
+		background: linear-gradient(45deg, white, #1db954);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	.title p {
+		font-size: 1.3rem;
+		margin-bottom: 2rem;
+	}
+	.cta-btn {
+		background: limegreen;
+		color: white;
+		padding: 1rem 2rem;
+		border: none;
+		border-radius: 50px;
+		font-size: 1.1rem;
+		cursor: pointer;
+	}
+	.cta-btn:hover {
+		transform: scale(1.05);
+		box-shadow: 0 10px 20px rgba(29, 185, 84, 0.4);
+	}
+	.section {
+		padding: 5rem 2rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.albums {
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 20px;
+		padding: 2rem;
+		margin-bottom: 2rem;
+	}
+	.section h2 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+	.albums-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+	.album-card {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 15px;
+		overflow: hidden;
+		transition: transform 0.3s, box-shadow 0.3s;
+		cursor: pointer;
+	}
+	.album-card:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+	}
+	.album-image {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+	.album-info {
+		padding: 30px;
+	}
+	.album-title {
+		font-size: 25px;
+		margin-bottom: 10px;
+	}
+	.artist {
+		color: #b3b3b3;
+	}
+
+</style>
+</head>
+<body>
+	<nav class="navbar">
+	<div class="logo"><i>PG MusicHUB</i></div>
+		<ul class="nav-links">
+			<li><a href="#home">Home</a></li>
+			<li><a href="#albums">Albums</a></li>
+			<li><a href="albums.html">Songs</a></li>
+			<li><a href="content.html">Register</a></li>
+		</ul>
+	</nav>
+	<section id="home" class="title">
+		<div class="hero-content">
+			<h1>Discover Your Music</h1>
+			<p>Millions of songs with differet web</p>
+			<a href="body.html"><button class="cta-btn">
+				Get Started
+			</button></a>
+		</div>
+	</section>
+	<section id="albums" class="section albums">
+	<h2>Suggested Albums</h2>
+	<div class="albums-grid">
+		
+		<div class="album-card">
+			<a href="Arijit Singh.html"style="text-decoration: none; color: inherit;">
+				<img src="photo1.jpg" alt="Arijit Singh" class="album-image">
+				<div class="album-info">
+					<div class="album-title">The Arijit Singh Collection</div>
+					<div class="artist">Arijit Singh</div>
+				</div>
+			</a>
+		</div>
+		
+		<div class="album-card">
+			<a href="Vishal Mishra.html"target="content"style="text-decoration: none; color: inherit;">
+				<img src="https://wallpapercave.com/wp/wp15809870.jpg" alt="Vishal Mishra" class="album-image">
+				<div class="album-info">
+					<div class="album-title">The Vishal Mishra Collection</div>
+					<div class="artist">Vishal Mishra</div>
+				</div>
+			</a>
+		</div>
+		<div class="album-card">
+			<a href="dragon.html"target="content"style="text-decoration: none; color: inherit;">
+				<img src="photo3.jpg" alt="" class="album-image">
+				<div class="album-info">
+					<div class="album-title">The Imagine Dragon Collection</div>
+					<div class="artist">Dan Reynolds • Ben McKee • Daniel Platzman</div>
+				</div>
+			</a>
+		</div>
+			
+</body>
+</html>

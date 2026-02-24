@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicVault - Your Spotify-Like Music Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #1db954, #ffeb3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #1db954;
+        }
+        .hero {
+            height: 100vh;
+            background-image: url('');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #1db954);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        .cta-btn {
+            background: #1db954;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(29, 185, 84, 0.4);
+        }
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .featured-albums {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .album-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .album-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .album-info {
+            padding: 1.5rem;
+        }
+        .album-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .artist-year {
+            color: #b3b3b3;
+            font-size: 1rem;
+        }
+        .songs-list {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+        .song-item:hover {
+            background: rgba(29, 185, 84, 0.2);
+        }
+        .song-info {
+            flex: 1;
+            margin-left: 1rem;
+        }
+        .song-title {
+            font-weight: bold;
+        }
+        .song-duration {
+            color: #b3b3b3;
+            font-size: 0.9rem;
+        }
+        .play-btn {
+            background: #1db954;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .registration {
+            background: linear-gradient(135deg, #1db954, #191414);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        .form-group input::placeholder {
+            color: #b3b3b3;
+        }
+        .submit-btn {
+            background: #ffeb3b;
+            color: #000;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #ffd700;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .albums-grid, .songs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MusicVault</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#albums">Albums</a></li>
+            <li><a href="#songs">Songs</a></li>
+            <li><a href="#register">Register</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Sound</h1>
+            <p>Millions of songs. Zero ads. Unlimited vibes.</p>
+            <button class="cta-btn">Get Started Free</button>
+        </div>
+    </section>
+
+    <section id="featured" class="section featured-albums">
+        <h2>Featured Albums</h2>
+        <div class="albums-grid">
+            <div class="album-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Album 1" class="album-image">
+                <div class="album-info">
+                    <div class="album-title">Thriller</div>
+                    <div class="artist-year">Michael Jackson • 1982</div>
+                </div>
+            </div>
+            <div class="album-card">
+                <img src="https://images.unsplash.com/photo-1462398162064-cd9bffe63458?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Album 2" class="album-image">
+                <div class="album-info">
+                    <div class="album-title">Abbey Road</div>
+                    <div class="artist-year">The Beatles • 1969</div>
+                </div>
+            </div>
+            <div class="album-card">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Album 3" class="album-image">
+                <div class="album-info">
+                    <div class="album-title">Lemonade</div>
+                    <div class="artist-year">Beyoncé • 2016</div>
+                </div>
+            </div>
+            <div class="album-card">
+                <img src="https://images.unsplash.com/photo-1615107321415-c3a31d6b21d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Album 4" class="album-image">
+                <div class="album-info">
+                    <div class="album-title">Folklore</div>
+                    <div class="artist-year">Taylor Swift • 2020</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="songs" class="section songs-list">
+        <h2>Top Songs</h2>
+        <div class="songs-grid">
+            <div class="song-item">
+                <button class="play-btn">▶</button>
+                <div class="song-info">
+                    <div class="song-title">Blinding Lights</div>
+                    <div class="song-duration">The Weeknd • 3:20</div>
+                </div>
+            </div>
+            <div class="song-item">
+                <button class="play-btn">▶</button>
+                <div class="song-info">
+                    <div class="song-title">Levitating</div>
+                    <div class="song-duration">Dua Lipa • 3:23</div>
+                </div>
+            </div>
+            <div class="song-item">
+                <button class="play-btn">▶</button>
+                <div class="song-info">
+                    <div class="song-title">Watermelon Sugar</div>
+                    <div class="song-duration">Harry Styles • 2:54</div>
+                </div>
+            </div>
+            <div class="song-item">
+                <button class="play-btn">▶</button>
+                <div class="song-info">
+                    <div class="song-title">Bad Habits</div>
+                    <div class="song-duration">Ed Sheeran • 3:51</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="section registration">
+        <h2>Register as a Viewer</h2>
+        <p>Join thousands of music lovers. Sign up for exclusive access!</p>
+        <form>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password" required>
+            </div>
+            <button type="submit" class="submit-btn">Sign Up Free</button>
+        </form>
+    </section>
+
+    <script>
+        // Simple form submission handler (for demo)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for registering! Welcome to MusicVault 🎵');
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
